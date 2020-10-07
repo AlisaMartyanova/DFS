@@ -13,6 +13,7 @@ run the following command in console:
 *docker run -e N_SERVER_HOST=3.16.46.152 -e N_SERVER_PORT=5550 -e -it  matrosovatalia/client:v1*
 ```
 It will automatically connect to docker swarm with servers and launch the client. You will see the following:
+
 ![alt text](https://github.com/AlisaMartyanova/DistributedSystems/blob/master/term.png)
 
 ### You can type the following commands in client: 
@@ -65,7 +66,9 @@ help - list all possible commands
 As main communication protocol we used the **Hypertext Transfer Protocol (HTTP)** - an application-level TCP/IP based protocol. 
 
 **Client**
+
 The HTTP client sends a request to the server in the form of a request method, URI, and protocol version, followed by a MIME-like message containing request modifiers, client information, and possible body content over a TCP/IP connection.
 
 **Server**
+
 The HTTP server responds with a status line, including the message's protocol version and a success or error code, followed by a MIME-like message containing server information, entity meta information, and possible entity-body content.
