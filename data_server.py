@@ -109,25 +109,12 @@ def delete_file():
     ans = resp.text.split(',')
     for i in ans:
         if not i == '' and not i == str(port):
-            r = requests.post("http://127.0.0.1:" + str(i) + "/rep_rmfile", headers=headers)
+            r = requests.post("http://127.0.0.1:" + str(i) + "/rmfile", headers=headers)
 
     # requests.post("http://127.0.0.1:8000/replicate", headers={'ip': str(port)})
 
     return response, 200
 
-
-@app.route('/rep_rmfile', methods=['POST'])
-def rep_rmfile():
-    path = request.headers['path']
-    filename = request.headers['file_name']
-    file = os.path.join(root_dir, path, filename)
-    if not os.path.exists(file):
-        return 'file ' + file + ' does not exist'
-
-    os.remove(file)
-    response = 'file ' + filename + ' is successfully deleted'
-
-    return response, 200
 
 
 # view info about file
@@ -155,6 +142,7 @@ def file_info():
     return s
 
 
+
 # create new directory
 @app.route('/mkdir', methods=['POST'])
 def mkdir():
@@ -172,25 +160,12 @@ def mkdir():
     ans = resp.text.split(',')
     for i in ans:
         if not i == '' and not i == str(port):
-            r = requests.post("http://127.0.0.1:" + str(i) + "/rep_mkdir", headers=headers)
+            r = requests.post("http://127.0.0.1:" + str(i) + "/mkdir", headers=headers)
 
     # requests.post("http://127.0.0.1:8000/replicate", headers = {'ip': str(port)})
 
     return response
 
-
-@app.route('/rep_mkdir', methods=['POST'])
-def rep_mkdir():
-    path = request.headers['path']
-    dir = os.path.join(root_dir, path)
-    if not os.path.exists(dir):
-        os.mkdir(dir)
-        response = 'directory /' + str(path) + ' is successfully created'
-        return response
-
-    response = 'directory /' + str(path) + ' already exists'
-
-    return response
 
 
 # remove existing directory
@@ -210,25 +185,12 @@ def rmdir():
     ans = resp.text.split(',')
     for i in ans:
         if not i == '' and not i == str(port):
-            r = requests.post("http://127.0.0.1:" + str(i) + "/rep_rmdir", headers=headers)
+            r = requests.post("http://127.0.0.1:" + str(i) + "/rmdir", headers=headers)
 
     # requests.post("http://127.0.0.1:8000/replicate", headers = {'ip': str(port)})
 
     return response
 
-
-@app.route('/rep_rmdir', methods=['POST'])
-def rep_rmdir():
-    path = request.headers['path']
-    dir = os.path.join(root_dir, path)
-    if not os.path.exists(dir):
-        response = 'directory /' + str(path) + ' does not exist'
-        return response
-
-    shutil.rmtree(dir)
-    response = 'directory /' + str(path) + ' is successfully deleted'
-
-    return response
 
 
 @app.route('/send_update', methods=['POST'])

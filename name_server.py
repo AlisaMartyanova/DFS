@@ -71,18 +71,6 @@ def update(node, av):
     response = requests.post("http://127.0.0.1:" + str(av) +
                              "/send_update", headers=data)
 
-# @app.route('/replicate', methods=['POST'])
-# def replicate():
-#     global available
-#
-#     response = request.headers['ip']
-#     print(available)
-#     for node in available:
-#
-#         if not (str(node) == str(response)):
-#             update(node, response)
-#
-#     return 'ok', 200
 
 @app.route('/get_all_ip', methods=['GET'])
 def all_av():
