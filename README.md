@@ -1,5 +1,5 @@
 # Project 2: Distributed File System
-# Innopolis University, Fall 2020
+## Innopolis University, Fall 2020
 **Team**:
 
 [Natalia Matrosova](https://github.com/MatrosovaTalia) - responsible for client and hosting
