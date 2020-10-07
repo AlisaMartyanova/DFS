@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 port = 5550
 CONFIGURE_PATH = ''
-
+# DATA_NODES = {'3.137.174.40': '10.0.15.11'} #private: public
 s1 = os.environ["STORAGE_1_HOST"] + ":" + os.environ["STORAGE_1_PORT"]
 s2 = os.environ["STORAGE_2_HOST"] + ":" + os.environ["STORAGE_2_PORT"]
 s3 = os.environ["STORAGE_3_HOST"] + ":" + os.environ["STORAGE_3_PORT"]
@@ -26,19 +26,18 @@ def home():
     <h1>Hello! This is home page of name server.</h1>
     '''
 
-
-#send ip of available data server to client 
 @app.route('/get_ip', methods=['GET'])
 def get_ip():
     global available
     check_available()
     if len(available) > 1:
         st = str(ips[available[0]])
+        # st = str(available[0])
         return st, 200
 
     return 'Not enough number of available servers. Data loss may occur', 400
 
-#check which servers are available 
+# @app.route('/check_available', methods=['GET'])
 def check_available():
     to_remove = []
     for node in available:
@@ -74,14 +73,13 @@ def check_available():
         down.remove(node)
 
 
-#update servers that was down
+
 def update(node, av):
     data = {'ip': str(node)}
     response = requests.post("http://" + str(av) +
                              "/send_update", headers=data)
 
 
-#send ip of all available servers to server that executes client command
 @app.route('/get_all_ip', methods=['GET'])
 def all_av():
     resp = ''

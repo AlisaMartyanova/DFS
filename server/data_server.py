@@ -5,7 +5,7 @@ import shutil, os, requests
 port = 5000
 my_addr = os.environ["HOST_IP"] + ":" + os.environ["HOST_PORT"]
 name_server_addr = os.environ["N_SERVER_HOST"] + ":" + os.environ["N_SERVER_PORT"]
-
+# print(name_server_addr)
 
 app = Flask(__name__)
 
@@ -30,7 +30,7 @@ def send_file():
     f = request.files['file']
     path = request.headers['path']
     if not os.path.exists(os.path.join(root_dir, path)):
-        os.mkdir(os.path.join(root_dir, path))  
+        os.mkdir(os.path.join(root_dir, path))  # create dir
 
     f.save(os.path.join(root_dir, path, f.filename))
     response = 'file ' + f.filename + ' uploaded successfully'
@@ -49,7 +49,6 @@ def send_file():
     return response, 200
 
 
-#replication to other servers
 @app.route('/rep_send', methods=['POST'])
 def replicate_send():
     f = request.files['file']
@@ -108,8 +107,6 @@ def delete_file():
     os.remove(file)
     response = 'file ' + filename + ' is successfully deleted'
 
-
-    #replication to other servers
     headers = {'path': str(path), 'file_name': str(filename)}
     resp = requests.get("http://{}/get_all_ip".format(name_server_addr))
     ans = resp.text.split(',')
@@ -161,8 +158,6 @@ def mkdir():
     os.mkdir(dir)
     response = 'directory /' + str(path) + ' is successfully created'
 
-
-    #replication to other servers
     headers = {'path': str(path)}
     resp = requests.get("http://{}/get_all_ip".format(name_server_addr))
     ans = resp.text.split(',')
@@ -188,8 +183,6 @@ def rmdir():
     shutil.rmtree(dir)
     response = 'directory /' + str(path) + ' is successfully deleted'
 
-
-    #replication to other servers
     headers = {'path': str(path)}
     resp = requests.get("http://{}/get_all_ip".format(name_server_addr))
     ans = resp.text.split(',')
@@ -201,21 +194,6 @@ def rmdir():
 
     return response
 
-
-
-#send updates to server that was down
-@app.route('/send_update', methods=['POST'])
-def send_update():
-    ip = request.headers['ip']
-    shutil.make_archive('Python', 'zip', 'dfs')
-    fileobj = open('Python.zip', 'rb')
-    files = {'file': ('Python.zip', fileobj)}
-    response = requests.post("http://" + str(ip) + "/get_update", files=files)
-    os.remove('Python.zip')
-    return 'server was updated'
-
-
-#get all updates from client
 @app.route('/get_update_client', methods=['POST'])
 def get_update_client():
     shutil.rmtree('dfs')
@@ -225,8 +203,6 @@ def get_update_client():
     f.save('Python.zip')
     shutil.unpack_archive('Python.zip')
 
-
-    #replication to other servers
     fileobj = open('Python.zip', 'rb')
     files = {'file': ('Python.zip', fileobj)}
     resp = requests.get("http://{}/get_all_ip".format(name_server_addr))
@@ -240,7 +216,17 @@ def get_update_client():
     return 'ok', 200
 
 
-#update server after it was down
+@app.route('/send_update', methods=['POST'])
+def send_update():
+    ip = request.headers['ip']
+    shutil.make_archive('Python', 'zip', 'dfs')
+    fileobj = open('Python.zip', 'rb')
+    files = {'file': ('Python.zip', fileobj)}
+    response = requests.post("http://" + str(ip) + "/get_update", files=files)
+    os.remove('Python.zip')
+    return 'server was updated'
+
+
 @app.route('/get_update', methods=['POST'])
 def get_update():
     shutil.rmtree('dfs')
