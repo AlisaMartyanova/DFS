@@ -22,44 +22,28 @@ It will automatically connect to docker swarm with servers and launch the client
 
 ### You can type the following commands in client: 
 ```dif
-send_f - send file from client to server
-
-read_f - download file from server to client
-
-mkdir_server - make directory on server
-
-rmdir_server - remove directory from server
-
-info - get information about file on server
-
-ls_server - list directory on server
-
-send_all - send all updates from client to server
-
-rm_f_server - remove file from server
-```
-```
-init - launches automatically when client runs and clears root directory (dfs) on client
-
-init_size - get information about free size on client
-
-create_f - create file on client
-
-mkdir - make directory on client
-
-rmdir - remove directory from client
-
-rm_f - remove file from client
-
-ls - list directory on client
-
-cd - change directory on client
-
-mv - move file from one directory to another on client
-
-cp - make copy of file
-
-help - list all possible commands
+init_size -          Get free memory size
+create_f <file> -    Create empty file
+edit_f <file> -      Append text to <file>
+cat_f <file> -       Print <file> content to stdout
+read_f <file> -      Download file <file> from server
+send_f <file> -      Upload file <file> to server
+rm_f <file> -        Delete locally file <file>
+rm_f_server <file> - Delete file <file> from server
+cp <file> -          Create a copy of <file>
+info <file> -        Get info from server about file <file>
+mv <src> <dest> -    Move file <src> to <dest>
+cd .. -              Go to upper dir
+cd <dir> -           Open <dir>
+mkdir <dir> -        Create directory <dir> 
+mkdir_server <dir> - Create directory <dir> on server
+rmdir <dir> -        Delete directory <dir>
+rmdir_server <dir> - Delete directory <dir> on server
+ls -                 List files in the local directory
+ls_server -          List files in the current directory on server
+send_all -           Submit all changes to server
+quit -               Exit from program
+help -               Show available commands
 ```
 
 **Links to dockerhub:**
