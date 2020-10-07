@@ -17,42 +17,41 @@ It will automatically connect to docker swarm with servers and launch the client
 
 ### You can type the following commands in client: 
 ```dif
-*send_f* - send file from client to server
+send_f - send file from client to server
 
-*read_f* - download file from server to client
+read_f - download file from server to client
 
-*mkdir_server* - make directory on server
+mkdir_server - make directory on server
 
-*rmdir_server* - remove directory from server
+rmdir_server - remove directory from server
 
-*info* - get information about file on server
+info - get information about file on server
 
-*ls_server* - list directory on server
+ls_server - list directory on server
 
-*send_all* - send all updates from client to server
+send_all - send all updates from client to server
 
-*rm_f_server* - remove file from server
+rm_f_server - remove file from server
 ```
 ```
-*init* - launches automatically when client runs and clears root directory (dfs) on client
+init - launches automatically when client runs and clears root directory (dfs) on client
 
-*init_size* - get information about free size on client
+init_size - get information about free size on client
 
-*create_f* - create file on client
+create_f - create file on client
 
-*mkdir* - make directory on client
+mkdir - make directory on client
 
-*rmdir* - remove directory from client
+rmdir - remove directory from client
 
-*rm_f* - remove file from client
+rm_f - remove file from client
 
-*ls* - list directory on client
+ls - list directory on client
 
-*cd* - change directory on client
-
-*mv* - move file from one directory to another on client
-
-*cp* - make copy of file
+cd - change directory on client
+mv - move file from one directory to another on client
+cp - make copy of file
+help - list all possible commands
 ```
 
 **Links to dockerhub:**
