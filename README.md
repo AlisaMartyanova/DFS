@@ -61,6 +61,9 @@ help - list all possible commands
 **Links to dockerhub:**
 [storage server](https://hub.docker.com/repository/docker/matrosovatalia/storage-server), [name server](https://hub.docker.com/repository/docker/matrosovatalia/nameserver), [client](https://hub.docker.com/repository/docker/matrosovatalia/client)
 
+## Architectural Diagram
+
+![alt text](https://github.com/AlisaMartyanova/DistributedSystems/blob/master/architecture_diagram.png)
 
 ## Description of communication protocols
 As main communication protocol we used the **Hypertext Transfer Protocol (HTTP)** - an application-level TCP/IP based protocol. 
