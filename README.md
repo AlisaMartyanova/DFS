@@ -6,12 +6,15 @@
 
 [Alisa Martyanova](https://github.com/AlisaMartyanova) - responsible for data and naming servers
 
+## Project Description
+
+The Distributed File System (DFS) is a file system with data stored on a server. The data is accessed and processed as if it was stored on the local client machine. The DFS makes it convenient to share information and files among users on a network.Files will be hosted remotely on one or more storage servers. Separately, a single naming server will index the files, indicating which one is stored where. When a client wishes to access a file, it first contacts the naming server to obtain information about the storage server hosting it. After that, it communicates directly with the storage server to complete the operation.
 
 ## How to use the file system
 
 run the following command in console: 
 ```dif
-*docker run -e N_SERVER_HOST=3.16.46.152 -e N_SERVER_PORT=5550 -e -it  matrosovatalia/client:v1*
+docker run -e N_SERVER_HOST=3.16.46.152 -e N_SERVER_PORT=5550 -it  matrosovatalia/client:v3
 ```
 It will automatically connect to docker swarm with servers and launch the client. You will see the following:
 
