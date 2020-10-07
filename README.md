@@ -9,9 +9,9 @@
 ## How to use the file system
 
 run the following command in console: 
-
+```dif
 *docker run -e N_SERVER_HOST=3.16.46.152 -e N_SERVER_PORT=5550 -e -it  matrosovatalia/client:v1*
-
+```
 It will automatically connect to docker swarm with servers and launch the client. You will see the following:
 ![alt text](https://github.com/AlisaMartyanova/DistributedSystems/blob/master/term.png)
 
@@ -49,8 +49,11 @@ rm_f - remove file from client
 ls - list directory on client
 
 cd - change directory on client
+
 mv - move file from one directory to another on client
+
 cp - make copy of file
+
 help - list all possible commands
 ```
 
